@@ -1,0 +1,14 @@
+1) A printer is a specific purpose computer because it is designed to do only one main task: printing. 
+It cannot be easily reprogrammed to perform many different functions like a desktop computer.
+
+2) An interpreter is more convenient when writing or testing small programs because it runs code line by 
+line and shows errors immediately. A compiler is better for large programs that need to run faster 
+and be shared with many users.
+
+3) Companies usually keep their source code private to protect their ideas and prevent others from copying 
+their software. This also helps them maintain security and make money from their products. For example, 
+API keys may be exposed a company's code was open source, which would allow users to steal and use that 
+API key.
+
+4) Open source software is software where the source code is publicly available for anyone to view or modify. 
+It allows people to collaborate, improve the software, and learn from it.
