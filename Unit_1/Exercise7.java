@@ -3,6 +3,10 @@ public class Exercise7 {
     System.out.println("123456789012345678901234567890");
     System.out.println(String.format("%-12s %8d", "One", 1));
     System.out.println(String.format("%-12s %8d", "Ten", 10));
+
+    //System.out.println(String.format("%-19s %d", "One", 1));
+    //System.out.println(String.format("%-18s %d", "Ten", 10));
+
     System.out.println(String.format("%-12s %8d", "One hundred", 100));
     System.out.println(String.format("%-12s %11.2f", "One hundred", 100.00));
 
