@@ -3,7 +3,7 @@ public class Exercise11 {
     double length = 25;
     System.out.println(String.format("%s %.1f%s", "A square has a side of", length, "m"));
     System.out.println(String.format("%s %.1f %s", "Its area is", length*length, "sq m"));
-    
+    //System.out.println(String.format("Its area is %.1f sq m",  length*length));
     double recl = 10.3;
     double recw = 3;
     System.out.println(String.format("%s %.2f%s %.2f%s", "A rectangle has a length of", 
