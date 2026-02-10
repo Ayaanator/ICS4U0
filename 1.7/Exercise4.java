@@ -18,7 +18,7 @@ public class Exercise4 {
     c.drawString("X", mx - 20, (my / 2) - 20);
     c.drawString("Y", (mx / 2) + 20, 0 + 20);
 
-    c.setCursor(30, 30);
+    c.setCursor(10, 65);
     c.drawString("y = x + 15", mx / 2 + 15, my / 2 - 100);
 
     // c.print(c.maxx() + "\n");
