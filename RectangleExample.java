@@ -6,7 +6,7 @@ public class RectangleExample {
   public static void main(String[] args) {
     c = new Console();
     
-
+    
     c.drawRect(50, 50, 100, 60);
 
   }
