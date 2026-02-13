@@ -12,7 +12,6 @@ public class Exercise5 {
     int mx = c.maxx();
     int my = c.maxy();
 
-    
     c.drawString("100%", 10, 20);
     c.drawString("0%", 10, my - 10);
     c.setColor(Color.blue);
