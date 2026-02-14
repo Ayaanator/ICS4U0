@@ -101,5 +101,9 @@ public class Exercise10 {
     c.drawString(String.format("%.1f %s", xp, "%"), x2, y2);
     c.setColor(Color.green);
     c.drawString(String.format("%.1f %s", yp, "%"), x3, y3);
+
+    c.setColor(Color.white);
+    c.drawString("Computer Science AP 12", 10, my - 25);
+    c.drawString("Report as of February 13, 2026", 10, my - 10);
   }
 }
