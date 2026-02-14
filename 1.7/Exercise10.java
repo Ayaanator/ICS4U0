@@ -43,11 +43,63 @@ public class Exercise10 {
 
     c.drawOval(cx - r, cy - r, r * 2, r * 2);
 
+    c.setColor(Color.yellow);
     c.drawLine(cx, cy, cx + r, cy);
 
-    int x2 = (int)(cx + r * Math.cos((2.0*Math.PI)/(100.0/xp)));
-    int y2 = (int)(cy - r * Math.sin((2.0*Math.PI)/(100.0/xp)));
+    double angleX = xp * 3.6;
+    double angleY = (yp * 3.6) + angleX;
+    double angleZ = 360.0;
 
+    int x2 = (int)(cx + r * Math.cos(Math.toRadians(angleX)));
+    int y2 = (int)(cy - r * Math.sin(Math.toRadians(angleX)));
+
+    int x3 = (int)(cx + r * Math.cos(Math.toRadians(angleY)));
+    int y3 = (int)(cy - r * Math.sin(Math.toRadians(angleY)));
+    
+    c.setColor(Color.red);
     c.drawLine(cx, cy, x2, y2);
+    c.setColor(Color.green);
+    c.drawLine(cx, cy, x3, y3);
+    // c.print(angleX + ", " + angleY + ", " + angleZ);
+
+    c.setColor(Color.white);
+    c.drawString("0.0%", cx + (r / 3), cy - 12);
+    c.setColor(Color.yellow);
+    c.drawString(String.format("%.1f %s", zp, "%"), (int)((double)cx + (double)r * 1.20), cy);
+
+    /*if(x2 > cx) x2 = (int)((double)x2 * 1.1);
+    else x2 = (int)((double)x2 * 0.9);
+
+    if(y2 > cy) y2 = (int)((double)y2 * 1.1);
+    else y2 = (int)((double)y2 * 0.9);
+
+    if(x3 > cx) x3 = (int)((double)x3 * 1.1);
+    else x3 = (int)((double)x3 * 0.9);
+
+    if(y3 > cy) y3 = (int)((double)y3 * 1.1);
+    else y3 = (int)((double)y3 * 0.9);*/
+
+    int small = 10;
+    int big = 35;
+
+    if(x2 > cx) x2 += small;
+    else x2 -= big;
+
+    if(y2 > cy) y2 += big;
+    else y2 -= small;
+
+    if(x3 > cx) x3 += small;
+    else x3 -= big;
+
+    if(y3 > cy) y3 += big;
+    else y3 -= small;
+
+    // 37, 45, 21
+    // 378, 245, 98
+
+    c.setColor(Color.red);
+    c.drawString(String.format("%.1f %s", xp, "%"), x2, y2);
+    c.setColor(Color.green);
+    c.drawString(String.format("%.1f %s", yp, "%"), x3, y3);
   }
 }
