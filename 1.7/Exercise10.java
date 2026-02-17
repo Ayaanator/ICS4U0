@@ -52,9 +52,13 @@ public class Exercise10 {
 
     int x2 = (int)(cx + r * Math.cos(Math.toRadians(angleX)));
     int y2 = (int)(cy - r * Math.sin(Math.toRadians(angleX)));
+    int lx2 = (int)(cx + (r * Math.cos(Math.toRadians(angleX))) * 1.35);
+    int ly2 = (int)(cy - (r * Math.sin(Math.toRadians(angleX))) * 1.35);
 
     int x3 = (int)(cx + r * Math.cos(Math.toRadians(angleY)));
     int y3 = (int)(cy - r * Math.sin(Math.toRadians(angleY)));
+    int lx3 = (int)(cx + (r * Math.cos(Math.toRadians(angleY))) * 1.35);
+    int ly3 = (int)(cy - (r * Math.sin(Math.toRadians(angleY))) * 1.35);
     
     c.setColor(Color.red);
     c.drawLine(cx, cy, x2, y2);
@@ -98,9 +102,9 @@ public class Exercise10 {
     // 378, 245, 98
 
     c.setColor(Color.red);
-    c.drawString(String.format("%.1f %s", xp, "%"), x2, y2);
+    c.drawString(String.format("%.1f %s", xp, "%"), lx2, ly2);
     c.setColor(Color.green);
-    c.drawString(String.format("%.1f %s", yp, "%"), x3, y3);
+    c.drawString(String.format("%.1f %s", yp, "%"), lx3, ly3);
 
     c.setColor(Color.white);
     c.drawString("Computer Science AP 12", 10, my - 25);
