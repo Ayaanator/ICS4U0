@@ -43,7 +43,7 @@ public class Clock {
 
     String time = normalize(minutes) + ":" + normalize(seconds) + ":" + normalize(tenths * 10);
 
-    int charWidth = 8;
+    int charWidth = 5;
     int textWidth = time.length() * charWidth;
     int x = cx - textWidth / 2;
     int y = cy - r - 20;
