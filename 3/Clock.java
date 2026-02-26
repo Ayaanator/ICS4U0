@@ -4,6 +4,8 @@ import java.awt.*;
 public class Clock {
   public static int mx, my, cx, cy, r;
   public static int handLength;
+  public static int prevHandX = 0;
+  public static int prevHandY = 0;
 
   public static String normalize(int n) {
     return (n < 10) ? "0" + n : String.valueOf(n);
@@ -28,9 +30,15 @@ public class Clock {
   public static void drawHand(Console c, double angleRadians) {
     int handX = cx + (int)(handLength * Math.cos(angleRadians));
     int handY = cy + (int)(handLength * Math.sin(angleRadians));
-    // c.setColor(Color.red);
+
+    c.setColor(Color.blue);
+    c.drawLine(cx, cy, prevHandX, prevHandY);
+
+    c.setColor(Color.yellow);
     c.drawLine(cx, cy, handX, handY);
-    // c.setColor(Color.yellow);
+    
+    prevHandX = handX;
+    prevHandY = handY;
   }
 
   public static void printTime(Console c, long elapsed) {
@@ -47,11 +55,20 @@ public class Clock {
     int textWidth = time.length() * charWidth;
     int x = cx - textWidth / 2;
     int y = cy - r - 20;
-    c.drawString(time, x, y);
+    //c.drawString(time, x, y);
+    int cursor_x = (int)((double)mx / ((double)mx * 0.5));
+    int cursor_y = (int)((double)my / ((double)my * 0.0265));
+    //c.drawString(cursor_x + "", x, y);
+    //c.drawString(cursor_y + "", x / 2, y / 2);
+    c.setCursor(cursor_x, cursor_y);
+    //2 
+    c.print(time);
   }
 
   public static void main(String[] args) {
     Console c = new Console();
+    c.print("How many milliseconds do you want to update? ");
+    int update = c.readInt();
 
     mx = c.maxx();
     my = c.maxy();
@@ -62,11 +79,14 @@ public class Clock {
 
     long startTime = System.currentTimeMillis();
 
+    c.setColor(Color.blue);
+    c.fillRect(0, 0, mx, my);
+    c.setTextBackgroundColor(Color.blue);
+    c.setTextColor(Color.yellow);
+
     while (true) {
       long elapsed = System.currentTimeMillis() - startTime;
-
-      c.setColor(Color.blue);
-      c.fillRect(0, 0, mx, my);
+    
       c.setColor(Color.yellow);
 
       printClock(c);
@@ -80,7 +100,7 @@ public class Clock {
       printTime(c, elapsed);
 
       try {
-        Thread.sleep(200);
+        Thread.sleep(update);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }
