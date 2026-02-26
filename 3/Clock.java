@@ -28,9 +28,9 @@ public class Clock {
   public static void drawHand(Console c, double angleRadians) {
     int handX = cx + (int)(handLength * Math.cos(angleRadians));
     int handY = cy + (int)(handLength * Math.sin(angleRadians));
-    c.setColor(Color.red);
+    // c.setColor(Color.red);
     c.drawLine(cx, cy, handX, handY);
-    c.setColor(Color.yellow);
+    // c.setColor(Color.yellow);
   }
 
   public static void printTime(Console c, long elapsed) {
@@ -75,12 +75,12 @@ public class Clock {
       double elapsedSeconds = elapsed / 1000.0;
       double angleDegrees = (elapsedSeconds * 6) - 90;
       double angleRadians = Math.toRadians(angleDegrees);
-      drawHand(c, angleRadians);
 
+      drawHand(c, angleRadians);
       printTime(c, elapsed);
 
       try {
-        Thread.sleep(25);
+        Thread.sleep(200);
       } catch (InterruptedException e) {
         e.printStackTrace();
       }

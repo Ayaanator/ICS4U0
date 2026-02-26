@@ -4,7 +4,7 @@ import java.awt.*;
 public class Sine {
   public static void main(String[] args) {
 
-    Console c = new Console();
+    Console c = new Console(30, 120);
 
     int mx = c.maxx();
     int my = c.maxy();
@@ -35,6 +35,7 @@ public class Sine {
 
       if (i > 0) {
         c.drawLine((int)prevX, (int)prevY, (int)dx, (int)dy);
+        System.out.println("X: " + (i - 360) + " | Y: " + y);
         //c.drawLine((int)prevX, (int)prevY + 1, (int)dx, (int)dy + 1);
         //c.drawLine((int)prevX, (int)prevY - 1, (int)dx, (int)dy - 1);
       }
