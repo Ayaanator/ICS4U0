@@ -10,11 +10,11 @@ public class Test {
     System.out.println(s.compareTo(h));
     System.out.println(t.indexOf('a', t.indexOf('a', t.indexOf('a') + 1) + 1));
 
-    s = "ban";
-    h = "dad";
-    h = "annieeeee";
+    s = "ann";
+    h = "anaie";
+    //h = "annieeeee";
 
-    System.out.println(s.compareTo(h));
-    System.out.println(h.indexOf("nie"));
+    System.out.println(h.substring(0, h.length() - 1));
+    //System.out.println(h.indexOf("nie"));
   }
 }
