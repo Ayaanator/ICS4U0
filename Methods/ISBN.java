@@ -40,8 +40,8 @@ public class ISBN {
   public static void main(String[] args) {
     Scanner input = new Scanner(System.in);
     String ISBN = "3471602289303";
-    //System.out.print("Enter ISBN code: ");
-    //ISBN = input.nextLine();
+    System.out.print("Enter ISBN code: ");
+    ISBN = input.nextLine();
 
     if(ISBN.length() == 13) {
       boolean valid = true;
