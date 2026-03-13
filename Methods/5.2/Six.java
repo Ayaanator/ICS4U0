@@ -19,19 +19,23 @@ public class Six {
 
     int newCoefficient = coefficient * exponent;
     int newExponent = exponent - 1;
+    String result = "";
 
     if (newExponent == 1) {
-        return newCoefficient + "x";
+      result = newCoefficient + "x";
     } else if (newExponent == 0) {
-        return String.valueOf(newCoefficient);
+      result = String.valueOf(newCoefficient);
     } else {
-        return newCoefficient + "x^" + newExponent;
+      result = newCoefficient + "x^" + newExponent;
     }
+
+    return result;
   }
   public static void main(String[] args) {
     System.out.println(derivative("-4x^3"));
     System.out.println(derivative("5x^2"));
     System.out.println(derivative("x^4"));
     System.out.println(derivative("-x^5"));
+    System.out.println(derivative("-x^2"));
   }
 }
