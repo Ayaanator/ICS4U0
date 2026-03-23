@@ -36,6 +36,6 @@ public class Six {
     System.out.println(derivative("5x^2"));
     System.out.println(derivative("x^4"));
     System.out.println(derivative("-x^5"));
-    System.out.println(derivative("-x^2"));
+    System.out.println(derivative("-x^-2"));
   }
 }

@@ -44,7 +44,7 @@ public class ISBN {
     return flag;
   }
   public static void main(String[] args) {
-    System.out.println(isbn13("3471602289303"));
+    System.out.println(isbn13("9781774920466"));
     System.out.println(isbn13("9780684856094"));
     System.out.println(isbn13("9780306406157"));
     System.out.println(isbn13("113224331877"));

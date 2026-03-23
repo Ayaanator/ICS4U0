@@ -17,12 +17,15 @@ public class Quadratic {
     if(two.equals(" - 1x")) two = " - x";
     if(two.equals(" + 0x")) two = "";
     if(two.equals(" - 0x")) two = "";
-
+    if(x1 == 0 && x2 == 0) return "x^2";
     return one + two + three;
   }
   public static void main(String[] args) {
     System.out.println(standardQuadratic(2, 3));
     System.out.println(standardQuadratic(2, -3));
+    System.out.println(standardQuadratic(-2, 3));
+    System.out.println(standardQuadratic(-2, -3));
     System.out.println(standardQuadratic(4, -4));
+    System.out.println(standardQuadratic(0, 0));
   }
 }
