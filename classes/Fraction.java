@@ -1,7 +1,7 @@
 public class Fraction {
-  private int numerator;
-  private int denominator;
-  private boolean undefined;
+  private int numerator = -1;
+  private int denominator = -1;
+  private boolean undefined = true;
 
   public Fraction() {
     numerator = 0;
@@ -12,7 +12,7 @@ public class Fraction {
   public Fraction(int n, int d) {
     numerator = n;
     denominator = d;
-    undefined = d == 0 ? true : false;
+    undefined = denominator == 0;
   }
 
   public int getNumerator() {return numerator;}
@@ -34,12 +34,35 @@ public class Fraction {
     Fraction result = new Fraction(0, 0);
 
     if (!undefined && !other.getUndefined()) {
-      result.setNumerator(numerator *
-      other.getNumerator());
+      result.setNumerator(numerator * other.getNumerator());
+      result.setDenominator(denominator * other.getDenominator());
+    }
+      
+    return result;
+  }
 
-      result.setDenominator(denominator *
-      other.getDenominator());
+  public Fraction reciprocal() {
+    Fraction result = new Fraction(0, 0);
+    if (!undefined && numerator != 0) {
+      result.setNumerator(denominator);
+      result.setDenominator(numerator);
     }
-      return result;
+
+    return result;
+  }
+
+  public Fraction divide(Fraction theOther) {
+    return multiply(theOther.reciprocal());
+  }
+
+  public void simplify() {
+    int smallest = numerator > denominator ? denominator : numerator;
+
+    for(int i = 1; i <= smallest + 1; i++) {
+      if(numerator % i == 0 && denominator % i == 0) {
+        numerator = numerator / i;
+        denominator = denominator / i;
+      }
     }
+  }
 }

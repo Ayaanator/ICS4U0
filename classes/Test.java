@@ -14,10 +14,14 @@ public class Test {
     Fraction f2 = new Fraction(3, 2);
     Fraction f3 = new Fraction(0, 6);
     Fraction f4 = new Fraction(4, 0);
+    Fraction f5 = new Fraction(25, 5);
 
     System.out.println(f1);
     System.out.println(f2);
     System.out.println(f3);
     System.out.println(f4);
+    System.out.println(f5);
+    f5.simplify();
+    System.out.println(f5);
   }
 }
