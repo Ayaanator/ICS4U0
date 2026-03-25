@@ -21,7 +21,8 @@ public class Test {
     System.out.println(f3);
     System.out.println(f4);
     System.out.println(f5);
-    f5.simplify();
+    //f5.simplify();
     System.out.println(f5);
+    System.out.println(new Fraction(1,3).subtract(new Fraction(1, 6)));    
   }
 }

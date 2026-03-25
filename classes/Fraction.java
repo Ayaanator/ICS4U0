@@ -17,20 +17,26 @@ public class Fraction {
 
   public int getNumerator() {return numerator;}
   public int getDenominator() {return denominator;}
-  public boolean getUndefined() {return getUndefined();}
+  public boolean getUndefined() {return undefined;}
 
   public void setNumerator(int n) {numerator = n;}
   public void setDenominator(int d) {
     denominator = d;
-    undefined = d == 0 ? true : false;
+    undefined = denominator == 0;
   }
   public void setUndefined(boolean u) { undefined = u;}
 
   public String toString() {
-    return undefined ? "undefined" : numerator + "/" + denominator;
+    simplify();
+    if(undefined) return "undefined";
+    else if (numerator == 0) return "0";
+    else if (denominator == 1) return "" + numerator;
+    else return numerator + "/" + denominator;
   }
 
   public Fraction multiply(Fraction other) {
+    simplify();
+    other.simplify();
     Fraction result = new Fraction(0, 0);
 
     if (!undefined && !other.getUndefined()) {
@@ -42,6 +48,8 @@ public class Fraction {
   }
 
   public Fraction reciprocal() {
+    simplify();
+    
     Fraction result = new Fraction(0, 0);
     if (!undefined && numerator != 0) {
       result.setNumerator(denominator);
@@ -52,7 +60,44 @@ public class Fraction {
   }
 
   public Fraction divide(Fraction theOther) {
+    simplify();
+    theOther.simplify();
+
     return multiply(theOther.reciprocal());
+  }
+
+  public Fraction add(Fraction other) {
+    simplify();
+    other.simplify();
+    Fraction result = new Fraction(0, 0);
+
+    if (!undefined && !other.getUndefined()) {
+      int common_denom = this.getDenominator() * other.getDenominator();
+      result.setDenominator(common_denom);
+
+      result.setNumerator(this.getNumerator() * other.getDenominator() +
+      this.getDenominator() * other.getNumerator());
+    }
+
+    result.simplify();
+    return result;
+  }
+
+  public Fraction subtract(Fraction other) {
+    simplify();
+    other.simplify();
+    Fraction result = new Fraction(0, 0);
+
+    if (!undefined && !other.getUndefined()) {
+      int common_denom = this.getDenominator() * other.getDenominator();
+      result.setDenominator(common_denom);
+
+      result.setNumerator(this.getNumerator() * other.getDenominator() +
+      this.getDenominator() * (other.getNumerator() * -1));
+    }
+
+    result.simplify();
+    return result;
   }
 
   public void simplify() {
