@@ -19,7 +19,5 @@ public class Twelve {
     //String userInput = input.nextLine();
     String labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     String rotor1 = "OKDEMFZGXHCTNPQRASLUVWJBYI";
-
-    
   }
 }
