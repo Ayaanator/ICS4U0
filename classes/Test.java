@@ -1,14 +1,5 @@
 public class Test {
   public static void main(String[] args) {
-    /*Fruit orange = new Fruit("orange", "Spain", 0.45);
-    Book book = new Book("Sunrise on the Reaping", "978-1-5461-7146-1", "Suzanne Collins");
-    System.out.println(orange);
-    System.out.println(book);
-    orange.setName("banana");
-    orange.setOrigin("Japan");
-    orange.setPrice(23.5);
-    System.out.println(orange.getName());
-    System.out.println(orange);*/
 
     Fraction f1 = new Fraction(7, 5);
     Fraction f2 = new Fraction(3, 2);
@@ -23,6 +14,7 @@ public class Test {
     System.out.println(f5);
     //f5.simplify();
     System.out.println(f5);
-    System.out.println(new Fraction(1,3).subtract(new Fraction(1, 6)));    
+    System.out.println(new Fraction(1,3).subtract(new Fraction(1, 6)));   
+    System.out.println(new MixedFraction(1, 3, 2).add(new MixedFraction(1, 2, 3)));   
   }
 }

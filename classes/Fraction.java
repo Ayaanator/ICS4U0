@@ -1,7 +1,7 @@
 public class Fraction {
-  private int numerator = -1;
-  private int denominator = -1;
-  private boolean undefined = true;
+  protected int numerator = -1;
+  protected int denominator = -1;
+  protected boolean undefined = true;
 
   public Fraction() {
     numerator = 0;
@@ -27,7 +27,11 @@ public class Fraction {
   public void setUndefined(boolean u) { undefined = u;}
 
   public String toString() {
-    simplify();
+    Fraction simplified = new Fraction();
+    simplified = this.simplify();
+    this.numerator = simplified.getNumerator();
+    this.denominator = simplified.getDenominator();
+    
     if(undefined) return "undefined";
     else if (numerator == 0) return "0";
     else if (denominator == 1) return "" + numerator;
@@ -35,40 +39,36 @@ public class Fraction {
   }
 
   public Fraction multiply(Fraction other) {
-    simplify();
-    other.simplify();
     Fraction result = new Fraction(0, 0);
 
     if (!undefined && !other.getUndefined()) {
       result.setNumerator(numerator * other.getNumerator());
       result.setDenominator(denominator * other.getDenominator());
     }
-      
+    
+    result = result.simplify();
     return result;
   }
 
   public Fraction reciprocal() {
-    simplify();
     
-    Fraction result = new Fraction(0, 0);
+    Fraction result = new Fraction();
     if (!undefined && numerator != 0) {
       result.setNumerator(denominator);
       result.setDenominator(numerator);
     }
 
+    result = result.simplify();
     return result;
   }
 
   public Fraction divide(Fraction theOther) {
-    simplify();
-    theOther.simplify();
-
-    return multiply(theOther.reciprocal());
+    Fraction result = multiply(theOther.reciprocal());
+    result = result.simplify();
+    return result;
   }
 
   public Fraction add(Fraction other) {
-    simplify();
-    other.simplify();
     Fraction result = new Fraction(0, 0);
 
     if (!undefined && !other.getUndefined()) {
@@ -79,13 +79,11 @@ public class Fraction {
       this.getDenominator() * other.getNumerator());
     }
 
-    result.simplify();
+    result = result.simplify();
     return result;
   }
 
   public Fraction subtract(Fraction other) {
-    simplify();
-    other.simplify();
     Fraction result = new Fraction(0, 0);
 
     if (!undefined && !other.getUndefined()) {
@@ -96,18 +94,29 @@ public class Fraction {
       this.getDenominator() * (other.getNumerator() * -1));
     }
 
-    result.simplify();
+    result = result.simplify();
     return result;
   }
 
-  public void simplify() {
-    int smallest = numerator > denominator ? denominator : numerator;
+  public Fraction simplify() {
+    Fraction result = new Fraction();
+    boolean negNum = numerator < 0;
+    boolean negDen = denominator < 0;
+
+    int absNum = Math.abs(numerator);
+    int absDen = Math.abs(denominator);
+    int smallest = absNum > absDen ? absDen : absNum;
 
     for(int i = 1; i <= smallest + 1; i++) {
-      if(numerator % i == 0 && denominator % i == 0) {
-        numerator = numerator / i;
-        denominator = denominator / i;
+      if(absNum % i == 0 && absDen % i == 0) {
+        result.setNumerator(absNum / i);
+        result.setDenominator(absDen / i);
       }
     }
+
+    result.setNumerator(result.getNumerator() * (negNum ? -1 : 1));
+    result.setDenominator(result.getDenominator() * (negDen ? -1 : 1));
+
+    return result;
   }
 }
