@@ -20,7 +20,6 @@ public class RegularPolygon {
 
   public double getPerimeter() { return sides * size; }
 
-  @Override
   public String toString() {
     return "Shape with " + sides + " sides of length " + size +
            " (Perimeter = " + getPerimeter() + ")";

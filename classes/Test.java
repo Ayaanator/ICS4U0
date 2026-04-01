@@ -12,10 +12,12 @@ public class Test {
     System.out.println(f4);
     System.out.println(f5);
     System.out.println(f5);
-    System.out.println(new Fraction(1,3).subtract(new Fraction(1, 6)));   
-    System.out.println(new MixedFraction(1, 3, 2).add(new MixedFraction(1, 2, 3)));*/
+    System.out.println(new Fraction(1,3).subtract(new Fraction(1, 6)));   */
+    MixedNumber f1 = new MixedNumber(1, 3, 2);
+    MixedNumber f2 = new MixedNumber(1, 2, 3);
+    System.out.println(f1.add(f2));
 
-    Pentagon t = new Pentagon(5);
+    Pentagon t = new Pentagon(50);
     System.out.print(t);
 
   }

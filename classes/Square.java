@@ -5,7 +5,6 @@ public class Square extends RegularPolygon {
 
   public double getArea() { return size * size; }
 
-  @Override
   public String toString() {
     return super.toString() + ", (Area = " + getArea() + ")";
   }

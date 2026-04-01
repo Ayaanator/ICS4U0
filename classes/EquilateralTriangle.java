@@ -5,7 +5,6 @@ public class EquilateralTriangle extends RegularPolygon {
 
   public double getArea() { return (Math.sqrt(3) / 4) * size * size; }
 
-  @Override
   public String toString() {
     return super.toString() + ", (Area = " + getArea() + ")";
   }
