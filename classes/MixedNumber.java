@@ -6,17 +6,9 @@ public class MixedNumber extends Fraction {
     whole = -1;
   }
 
-  public MixedNumber(int n, int d) {
-    numerator = n;
-    denominator = d;
-    undefined = denominator == 0;
-  }
-
   public MixedNumber(int n, int d, int w) {
-    numerator = n;
-    denominator = d;
+    super(n, d);
     whole = w;
-    undefined = denominator == 0;
   }
 
   public int getWhole() {return whole;}
@@ -25,17 +17,22 @@ public class MixedNumber extends Fraction {
   public MixedNumber add(MixedNumber other) {
     MixedNumber result = new MixedNumber(0, 0, 0);
     if(!this.undefined && !other.getUndefined()) {
-      Fraction f1 = new Fraction(this.whole * this.denominator + this.numerator, 
-        this.denominator);
+      Fraction improper = new Fraction(whole * denominator + numerator, 
+        denominator);
 
-      Fraction f2 = new Fraction(other.getWhole() * other.getDenominator() + other.getNumerator(), 
+      Fraction otherImproper = new Fraction(other.getWhole() * other.getDenominator() + other.getNumerator(), 
         other.getDenominator());
 
-      Fraction i_result = f1.add(f2);
+      Fraction improperResult = improper.add(otherImproper);
+      
       result = new MixedNumber(
-        i_result.getNumerator() % i_result.getDenominator(), 
-        i_result.getDenominator(), 
-        i_result.getNumerator() / i_result.getDenominator());
+        improperResult.getNumerator() % improperResult.getDenominator(), 
+        improperResult.getDenominator(), 
+        improperResult.getNumerator() / improperResult.getDenominator());
+
+      result.setWhole(improperResult.getNumerator() / improperResult.getDenominator());
+      result.setNumerator(improperResult.getNumerator() % improperResult.getDenominator());
+      result.setDenominator(improperResult.getDenominator());
     }
 
     return result;
