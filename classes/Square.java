@@ -6,6 +6,8 @@ public class Square extends RegularPolygon {
   public double getArea() { return size * size; }
 
   public String toString() {
-    return super.toString() + ", (Area = " + getArea() + ")";
+    return super.toString() +
+      "Perimeter of square: " + String.format("%.2f", getPerimeter()) + " cm\n" +
+      "Area of square: " + String.format("%.2f", getArea()) + " sq. cm\n";
   }
 }

@@ -6,6 +6,8 @@ public class EquilateralTriangle extends RegularPolygon {
   public double getArea() { return (Math.sqrt(3) / 4) * size * size; }
 
   public String toString() {
-    return super.toString() + ", (Area = " + getArea() + ")";
+    return super.toString() +
+      "Perimeter of triangle: " + String.format("%.2f", getPerimeter()) + " cm\n" +
+      "Area of triangle: " + String.format("%.2f", getArea()) + " sq. cm\n";
   }
 }

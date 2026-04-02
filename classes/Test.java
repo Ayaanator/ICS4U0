@@ -16,9 +16,15 @@ public class Test {
     MixedNumber f1 = new MixedNumber(1, 3, 2);
     MixedNumber f2 = new MixedNumber(1, 2, 3);
     System.out.println(f1.add(f2));
+    System.out.println();
 
-    Pentagon t = new Pentagon(50);
+    Square s = new Square(6);
+    Pentagon p = new Pentagon(6);
+    EquilateralTriangle t = new EquilateralTriangle(6);
+    System.out.print(s);
+    System.out.println();
+    System.out.print(p);
+    System.out.println();
     System.out.print(t);
-
   }
 }

@@ -21,7 +21,6 @@ public class RegularPolygon {
   public double getPerimeter() { return sides * size; }
 
   public String toString() {
-    return "Shape with " + sides + " sides of length " + size +
-           " (Perimeter = " + getPerimeter() + ")";
+    return "Sides of shape: " + sides + "\nSizes of sides: " + size + "\n";
   }
 }

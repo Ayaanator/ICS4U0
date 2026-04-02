@@ -29,10 +29,6 @@ public class MixedNumber extends Fraction {
         improperResult.getNumerator() % improperResult.getDenominator(), 
         improperResult.getDenominator(), 
         improperResult.getNumerator() / improperResult.getDenominator());
-
-      result.setWhole(improperResult.getNumerator() / improperResult.getDenominator());
-      result.setNumerator(improperResult.getNumerator() % improperResult.getDenominator());
-      result.setDenominator(improperResult.getDenominator());
     }
 
     return result;
@@ -40,7 +36,8 @@ public class MixedNumber extends Fraction {
 
   public String toString() {
     if(undefined) return "undefined";
-    else if (numerator == 0) return (whole > 0 ? whole + "" : "0");
+    else if (numerator == 0) return "" + whole;
+    else if (numerator % denominator == 0) return "" + (whole + (numerator / denominator));
     else if (denominator == 1) return "" + numerator;
     else return (whole > 0 ? whole + " " : "") + super.toString();
   }
