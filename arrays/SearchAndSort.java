@@ -21,7 +21,7 @@ public class SearchAndSort {
 
   public static void populateWithRandomNumbers(int[] list) {
     for (int index = 0; index < list.length; index++) {
-      list[index] = (int) (Math.random() * 500000000);
+      list[index] = (int) (Math.random() * 500);
     }
   }
 
@@ -50,13 +50,20 @@ public class SearchAndSort {
     }
   }
 
+  public static void bubbleSort(int[] list) {
+    for(int limit = list.length - 1; limit >= 1; limit--) {
+      for(int i = 0; i < limit; i++) {
+        if(list[i] > list[i + 1]) swap(list, i, i + 1);
+      }
+    }
+  }
+
   public static void main(String[] args) {
-    int[] numbers = new int[1000000];
+    int[] numbers = new int[10];
     populateWithRandomNumbers(numbers);
     //printArray(numbers);
-    swap(numbers, 4, 11);
     System.out.println();
-    selectionSort(numbers);
+    bubbleSort(numbers);
     printArray(numbers);
   }
 }
