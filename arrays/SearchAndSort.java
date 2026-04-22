@@ -83,7 +83,7 @@ public class SearchAndSort {
     int end = list.length - 1;
     int idx = (start + end) / 2;
 
-    while(start < idx && list[idx] != key && start < idx) {
+    while(start < idx && list[idx] != key) {
       if(key > list[idx]) {
         start = idx + 1;
       } else {
