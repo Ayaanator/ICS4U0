@@ -8,7 +8,7 @@ public class SearchAndSort {
 
   public static void printArray(int[] list) {
     for (int index = 0; index < list.length; index++) {
-      System.out.println(list[index]);
+      System.out.println("Idx " + index + ": " + list[index]);
     }
   }
 
@@ -21,7 +21,7 @@ public class SearchAndSort {
 
   public static void populateWithRandomNumbers(int[] list) {
     for (int index = 0; index < list.length; index++) {
-      list[index] = (int) (Math.random() * 500);
+      list[index] = (int) (Math.random() * 100);
     }
   }
 
@@ -29,6 +29,16 @@ public class SearchAndSort {
     int temp = list[i];
     list[i] = list[j];
     list[j] = temp;
+  }
+
+  public static void rotateList(int[] list, int m, int n) {
+    int temp = list[n];
+
+    for(int i = n - 1; i >= m; i--) {
+      list[i + 1] = list[i];
+    }   
+
+    list[m] = temp;
   }
 
   public static int findLargestItem(int[] list, int end) {
@@ -58,12 +68,45 @@ public class SearchAndSort {
     }
   }
 
+  public static void insertionSort(int[] list) {
+    for(int i = 1; i <= list.length -1; i++) {
+      int j = 0;
+      for(; j <= i - 1 && list[j] < list[i]; j++);
+      if(list[j] > list[i]) {
+        rotateList(list, j, i);
+      }
+    }
+  }
+
+  public static int binarySearch(int[] list, int key) {
+    int start = 0;
+    int end = list.length - 1;
+    int idx = (start + end) / 2;
+
+    while(start < idx && list[idx] != key && start < idx) {
+      if(key > list[idx]) {
+        start = idx + 1;
+      } else {
+        end = idx - 1;
+      }
+
+      idx = (start + end) / 2;
+    }
+    if(start > end) {
+      return -1;
+    } else {
+      return idx;
+    }
+  }
+
   public static void main(String[] args) {
-    int[] numbers = new int[10];
+    int[] numbers = new int[100];
     populateWithRandomNumbers(numbers);
     //printArray(numbers);
     System.out.println();
-    bubbleSort(numbers);
+    insertionSort(numbers);
     printArray(numbers);
+
+    System.out.println("\nPos: " + binarySearch(numbers, 67));
   }
 }
