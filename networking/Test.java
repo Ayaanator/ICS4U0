@@ -1,58 +1,9 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.net.*;
-import java.util.Scanner;
 
-public class NetIO {
-  public static String myIPAddress() {
-    String ipAddress = "";
-
-    try {
-      InetAddress myNode = InetAddress.getLocalHost();
-      ipAddress = myNode.getHostAddress();
-    } catch (Exception e) {
-      System.out.println("Error in myIPAddress() method");
-      ipAddress = e.getMessage();
-    }
-
-    return ipAddress;
-  }
-
-  public static int sendRequest(String message, String destinationIPAddress) {
-    int errorCode = Globals.NET_SEND_ERROR;
-    int attempts = 0;
-
-    do { 
-      try {
-        attempts++;
-        Socket myComputer = new Socket();
-        myComputer.connect(new InetSocketAddress(destinationIPAddress, 
-          Globals.PORT_NUMBER), Globals.TIME_OUT);
-
-        // open an output channel
-        DataOutputStream output = new DataOutputStream(myComputer.getOutputStream());
-        output.writeUTF(message);
-
-        // wait for confirmation from receiving computer
-        DataInputStream input = new DataInputStream(myComputer.getInputStream());
-        String confirmation = input.readUTF();
-
-        errorCode = confirmation.equals("" + Globals.NET_OK) ? Globals.NET_OK : Globals.NET_SEND_ERROR;
-        myComputer.close();
-      } catch (Exception e) {
-        System.out.println("Error: Cannot connect to receiving computer.");
-      }
-    } while (errorCode != Globals.NET_OK && attempts < Globals.SENDING_ATTEMPTS_LIMIT);
-
-    return errorCode;
-  }
+public class Test {
+  
 
   public static void main(String[] args) {
-    System.out.println(myIPAddress());
-
-    String message = "";
-    String ipAddress = "";
-
+ 
     String goku = "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣶⣦⡄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" + //
                   "⠀⠀⠀⠀⠀⢀⣀⣀⣀⡀⢀⠀⢹⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" + //
                   "⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣷⣄⠨⣿⣿⣿⡌⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n" + //
@@ -69,6 +20,7 @@ public class NetIO {
                   "⣼⣿⠋⢀⣇⢸⡄⢻⣟⠻⣿⣿⣿⣿⣿⣿⠿⡿⠟⢁⠀⠀⠀⠀⠀⢰⠀⣠⠀⠰\r\n" + //
                   "⢸⣿⡣⣜⣿⣼⣿⣄⠻⡄⡀⠉⠛⠿⠿⠛⣉⡤⠖⣡⣶⠁⠀⠀⠀⣾⣶⣿⠐⡀\r\n" + //
                   "⣾⡇⠈⠛⠛⠿⣿⣿⣦⠁⠘⢷⣶⣶⡶⠟⢋⣠⣾⡿⠃⠀⠀⠀⠰⠛⠉⠉⠀⠀";
+    
     String goku2 = "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠈⠉⠛⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n" + //
             "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠈⢭⡻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n" + //
             "⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠹⣦⢻⣿⣯⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿\r\n" + //
@@ -101,17 +53,7 @@ public class NetIO {
             "⣿⠀⠀⠈⠳⢤⣉⠃⠀⠀⠈⠀⠀⠀⠀⢻⣷⡄⠈⣿⠻⢿⣿⣿⣿⣷⣶⣤⣤⣤⣾⠿⠛⠉⠁⣠⣴⣿⠟⠁⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⣈⣵⣿⡏⣿\r\n" + //
             "⡏⠀⠀⣿⣷⡶⢉⡀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣦⡸⣷⡀⠉⠙⠛⠿⠿⠟⠛⠉⠀⠀⢀⣤⣾⡿⠛⠁⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⠇⠀⢀⣀⣴⣦⣭⣻⣿⣶⢻\r\n" + //
             "⠀⠀⢰⣿⣿⣾⣿⣿⣿⣶⣶⣦⡄⠀⠀⠀⠀⠈⢿⣿⣿⣿⣄⠀⠀⠀⠀⠀⣀⣀⣤⣾⣿⠿⠋⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⡟⣰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏";
-            
-    Scanner kbd = new Scanner(System.in);
-    do { 
-      System.out.print("Message: ");
-      message = kbd.nextLine();
-      System.out.print("ip-address: ");
-      ipAddress = kbd.nextLine();
-      sendRequest(message, "192.168.0.100");
-    } while (true);
-
-    //sendRequest(goku, "192.168.0.100");
+    System.out.println(goku);
   }
 }
 
