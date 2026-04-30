@@ -64,7 +64,7 @@ public class Send {
       message = kbd.nextLine();
       System.out.print("ip-address: ");
       ipAddress = kbd.nextLine();
-      NetIO.sendRequest(message, "192.168.0.100");
+      NetIO.sendRequest(message, "192.168.0.104");
     } while (true);
 
     //sendRequest(goku, "192.168.0.100");
