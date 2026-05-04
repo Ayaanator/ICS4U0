@@ -19,6 +19,34 @@ public class SearchAndSort {
     return index == list.length ? -1 : index;
   }
 
+  public static int[] mergeLists(int[] list1, int[] list2) {
+    int[] result = new int[list1.length + list2.length];
+
+    int p = 0;
+    int q = 0;
+    int r = 0;
+
+    while(p < list1.length && q < list1.length) {
+      if(p == list1.length) {
+        result[r] = list2[q];
+        q++;
+      } else if (q == list2.length) {
+        result[r] = list1[p];
+        p++;
+      } else if(list1[p] <= list2[q]) {
+        result[r] = list1[p];
+        p++;
+      } else {
+        result[r] = list2[q];
+        q++;
+      }
+      
+      r++;
+    }
+
+    return result;
+  }
+
   public static void populateWithRandomNumbers(int[] list) {
     for (int index = 0; index < list.length; index++) {
       list[index] = (int) (Math.random() * 100);
@@ -100,13 +128,10 @@ public class SearchAndSort {
   }
 
   public static void main(String[] args) {
-    int[] numbers = new int[100];
-    populateWithRandomNumbers(numbers);
-    //printArray(numbers);
-    System.out.println();
-    insertionSort(numbers);
-    printArray(numbers);
+    int[] numbers1 = {1, 4, 5};
+    int[] numbers2 = {2, 3};
 
-    System.out.println("\nPos: " + binarySearch(numbers, 67));
+    int[] result = mergeLists(numbers1, numbers2);
+    printArray(result);
   }
 }
