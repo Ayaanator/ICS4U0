@@ -1,4 +1,50 @@
+import java.util.Scanner;
+
 public class SearchAndSort {
+  public static String[][] studentsAndCourses =
+  { {"733822811", "CSC148,MAT223,PHY150,CHM292"},
+    {"432011922", "MUS305,HIS378,ENG140"},
+    {"732392194", "ENG140,PSY100,CHM108"},
+    {"531118220", "CSC148,PHY150"},  
+  };
+
+  public static String[][] courses =
+  { {"CSC148", "Computer Science"},
+    {"MAT223", "Linear Algebra"},
+    {"PHY150", "Theoretical Physics"},
+    {"MUS305", "Music Performance III"},
+    {"ENG140", "English Literature I"},
+    {"HIS378", "19th Century History"},
+    {"PSY100", "Introduction to Psychology"}
+  };
+
+  public static void printCourseInfo(String studentNumber) {
+    String[] coursesList = null;
+
+    for(int i = 0; i < studentsAndCourses.length; i++) {
+      if(studentsAndCourses[i][0].equals(studentNumber)) {
+        String courseString = studentsAndCourses[i][1];
+        coursesList = courseString.split(",");
+      }
+    }
+
+    System.out.println(studentNumber);
+    for(int i = 0; i < coursesList.length; i++) {
+      System.out.println(String.format("\t%s %s", coursesList[i], findCourseName(coursesList[i])));
+    }
+  }
+
+  public static String findCourseName(String key) {
+    String result = "N/A";
+    
+    for(int i = 0; i < courses.length; i++) {
+      if(courses[i][0].equals(key)) {
+        result = courses[i][1];
+      }
+    }
+
+    return result;
+  }
 
   public static void initializeArray(int[] list) {
     for (int index = 0; index < list.length; index++) {
@@ -96,6 +142,18 @@ public class SearchAndSort {
     }
   }
 
+  public static int findFirst(int[] items, int key) {
+    int index = binarySearch(items, key);
+
+    if(index != -1) {
+      index--;
+      for(; index > 0 && items[index] == key; index--);
+      index++;
+    }
+
+    return index;
+  }
+
   public static void insertionSort(int[] list) {
     for(int i = 1; i <= list.length -1; i++) {
       int j = 0;
@@ -128,10 +186,13 @@ public class SearchAndSort {
   }
 
   public static void main(String[] args) {
-    int[] numbers1 = {1, 4, 5};
-    int[] numbers2 = {2, 3};
+    Scanner scanner = new Scanner(System.in);
 
-    int[] result = mergeLists(numbers1, numbers2);
-    printArray(result);
+    System.out.print("Enter student number: ");
+    String studentNumber = scanner.nextLine();
+
+    printCourseInfo(studentNumber);
+
+    scanner.close();
   }
 }
