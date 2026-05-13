@@ -8,6 +8,9 @@ public class Globals {
   public static final int SENDING_ATTEMPTS_LIMIT = 4;
   public static final int QUEUE_SIZE = 100;
 
+  public static final int FRAME_X = 275;
+  public static final int FRAME_Y = 275;
+
   public static final String serverIPAddress = "192.168.0.104";
 
   // Commands to send to server

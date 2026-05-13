@@ -57,8 +57,20 @@ public class GridPanel extends JPanel {
       Globals.NO_MESSAGE,
       Globals.serverIPAddress);*/
 
-      if(!Globals.gameOver && Globals.) {
 
+
+      if(!Globals.gameOver && Globals.currentPlayer != Globals.NO_PLAYER 
+        && Globals.currentPlayer == Globals.me && val == Globals.NO_PLAYER
+      ) {
+        val = Globals.currentPlayer;
+        Graphics2D g = (Graphics2D) getGraphics();
+        drawXorO(g);
+        
+        if(val == 1) {
+          Globals.currentPlayer = 2;
+        } else {
+          Globals.currentPlayer = 1;
+        }
       }
     }
   }
