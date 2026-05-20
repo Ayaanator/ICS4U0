@@ -39,8 +39,7 @@ public class GridPanel extends JPanel {
       g.drawLine(OFFSET, OFFSET, Globals.COL_WIDTH - OFFSET, Globals.ROW_HEIGHT - OFFSET);
       g.drawLine(OFFSET, Globals.ROW_HEIGHT - OFFSET, Globals.COL_WIDTH - OFFSET, OFFSET);
     } else {
-      g.drawOval( OFFSET, OFFSET, Globals.COL_WIDTH - (2 * OFFSET), Globals.ROW_HEIGHT - (2 * OFFSET)
-      );
+      g.drawOval(OFFSET, OFFSET, Globals.COL_WIDTH - (2 * OFFSET), Globals.ROW_HEIGHT - (2 * OFFSET));
     }
   }
 

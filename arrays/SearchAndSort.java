@@ -4,8 +4,8 @@ public class SearchAndSort {
   public static String[][] studentsAndCourses =
   { {"733822811", "CSC148,MAT223,PHY150,CHM292"},
     {"432011922", "MUS305,HIS378,ENG140"},
-    {"732392194", "ENG140,PSY100,CHM108"},
-    {"531118220", "CSC148,PHY150"},  
+    {"531118220", "CSC148,PHY150"},
+    {"732392194", "ENG140,PSY100,CHM108"}
   };
 
   public static String[][] courses =
@@ -18,20 +18,33 @@ public class SearchAndSort {
     {"PSY100", "Introduction to Psychology"}
   };
 
+  public static String[][] studentNames = 
+  {
+    {"733822811", "Donald", "Philip", "Science"},
+    {"432011922", "Johnston", "Donna", "Humanities"},
+    {"732392194", "Peters", "Susan", "Science"},
+    {"531118220", "Cook", "Ann", "Life Sciences"}
+  };
+
   public static void printCourseInfo(String studentNumber) {
-    String[] coursesList = null;
+    String[][] students = findAll(studentNumber);
 
-    for(int i = 0; i < studentsAndCourses.length; i++) {
-      if(studentsAndCourses[i][0].equals(studentNumber)) {
-        String courseString = studentsAndCourses[i][1];
-        coursesList = courseString.split(",");
+    if(students.length > 0) {
+      for(int i = 0; i < students.length; i++) {
+        String courseString = students[i][1];
+        String[] coursesList = courseString.split(",");
+
+        System.out.println();
+        System.out.println(findStudentName(students[i][0]));
+        for(int j = 0; j < coursesList.length; j++) {
+          System.out.println(String.format("\t%s %s", coursesList[j], findCourseName(coursesList[j])));
+        }
       }
+    } else {
+      System.out.println();
+      System.out.println("Student(s) not found!");
     }
 
-    System.out.println(studentNumber);
-    for(int i = 0; i < coursesList.length; i++) {
-      System.out.println(String.format("\t%s %s", coursesList[i], findCourseName(coursesList[i])));
-    }
   }
 
   public static String findCourseName(String key) {
@@ -56,6 +69,42 @@ public class SearchAndSort {
     for (int index = 0; index < list.length; index++) {
       System.out.println("Idx " + index + ": " + list[index]);
     }
+  }
+
+  public static String[][] findAll(String key) {
+    int arrSize = 0;
+
+    for(int i = 0; i < studentsAndCourses.length; i++) {
+      if(studentsAndCourses[i][0].startsWith(key)) {
+        arrSize++;
+      }
+    }
+
+    String[][] result = new String[arrSize][2];
+    int counter = 0;
+
+    for(int i = 0; i < studentsAndCourses.length; i++) {
+      if(studentsAndCourses[i][0].startsWith(key)) {
+        result[counter][0] = studentsAndCourses[i][0];
+        result[counter][1] = studentsAndCourses[i][1];
+        counter++;
+      }
+    }
+
+    return result;
+  }
+
+  public static String findStudentName(String key) {
+    String result = "N/A";
+
+    for(int i = 0; i < studentNames.length; i++) {
+      if(studentNames[i][0].equals(key)) {
+        result = studentNames[i][0] + " " + studentNames[i][1] + ", "
+        + studentNames[i][2] + ". Program: " + studentNames[i][3];
+      }
+    }
+
+    return result;
   }
 
   public static int findItem(int n, int[] list) {
@@ -191,6 +240,7 @@ public class SearchAndSort {
     System.out.print("Enter student number: ");
     String studentNumber = scanner.nextLine();
 
+    studentNumber = studentNumber.equals("*") ? "" : studentNumber;
     printCourseInfo(studentNumber);
 
     scanner.close();
