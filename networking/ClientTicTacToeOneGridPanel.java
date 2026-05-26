@@ -23,30 +23,9 @@ import javax.swing.*;
   }
   
   public static void main(String[] args) {
-    /*Globals.gameOver = false;
-    Globals.me = Globals.PLAYER_ONE;
-    Globals.currentPlayer = Globals.PLAYER_ONE;*/
-
-    /*Globals.gameOver = true;
-    Globals.me = Globals.PLAYER_ONE;
-    Globals.currentPlayer = Globals.PLAYER_ONE;*/
-
-    /*Globals.gameOver = false;
-    Globals.me = Globals.PLAYER_ONE;
-    Globals.currentPlayer = Globals.PLAYER_TWO;*/
-
-    /*Globals.gameOver = false;
-    Globals.me = Globals.PLAYER_TWO;
-    Globals.currentPlayer = Globals.PLAYER_ONE;*/
-
-    /*Globals.gameOver = false;
-    Globals.me = Globals.PLAYER_TWO;
-    Globals.currentPlayer = Globals.PLAYER_TWO;*/
-
     Globals.gameOver = false;
-    Globals.me = Globals.NO_PLAYER;
-    Globals.currentPlayer = Globals.NO_PLAYER;
-
+    Globals.me = Globals.PLAYER_TWO;
+    Globals.currentPlayer = Globals.PLAYER_TWO;
     
     System.out.println("Game over : " + Globals.gameOver);
     System.out.println("I am player : " + Globals.me);
