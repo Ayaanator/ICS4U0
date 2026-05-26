@@ -28,13 +28,18 @@ public class Recursion {
   }
 
   public static void pascalTriangle(int n) {
+    int ctr = n;
     for(int i = 0; i < n; i++) {
+      for(int k = 0; k <= ctr; k++) {
+        System.out.print("\t");
+      }
+
       for(int j = 0; j <= i; j++) {
-        //System.out.print("\t");
-        System.out.print(String.format("%d ", pascalTerm(i, j)));
+        System.out.print(pascalTerm(i, j) + "\t\t");
       }
 
       System.out.println();
+      ctr--;
     }
   }
 
