@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class SearchAndSort {
   public static String[][] studentsAndCourses =
@@ -121,21 +120,26 @@ public class SearchAndSort {
     int q = 0;
     int r = 0;
 
-    while(p < list1.length && q < list1.length) {
-      if(p == list1.length) {
-        result[r] = list2[q];
-        q++;
-      } else if (q == list2.length) {
-        result[r] = list1[p];
-        p++;
-      } else if(list1[p] <= list2[q]) {
+    while(p < list1.length && q < list2.length) {
+      if(list1[p] <= list2[q]) {
         result[r] = list1[p];
         p++;
       } else {
         result[r] = list2[q];
         q++;
       }
-      
+      r++;
+    }
+
+    while(p < list1.length) {
+      result[r] = list1[p];
+      p++;
+      r++;
+    }
+
+    while(q < list2.length) {
+      result[r] = list2[q];
+      q++;
       r++;
     }
 
@@ -234,8 +238,24 @@ public class SearchAndSort {
     }
   }
 
+  public static int[] mergeSort(int[] list) {
+    if(list.length != 1) {
+      int[] top = new int[list.length / 2];
+      System.arraycopy(list, 0, top, 0, top.length); 
+      top = mergeSort(top);
+
+      int[] bottom = new int[list.length - top.length];
+      System.arraycopy(list, top.length, bottom, 0, bottom.length);
+      bottom = mergeSort(bottom);
+      
+      return mergeLists(top, bottom);
+    }
+
+    return list;
+  }
+
   public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+    /*Scanner scanner = new Scanner(System.in);
 
     System.out.print("Enter student number: ");
     String studentNumber = scanner.nextLine();
@@ -243,6 +263,11 @@ public class SearchAndSort {
     studentNumber = studentNumber.equals("*") ? "" : studentNumber;
     printCourseInfo(studentNumber);
 
-    scanner.close();
+    scanner.close();*/
+
+    int[] numbers = {100, 23, 60, 51, 1, 45};
+    int[] numbers1 = mergeSort(numbers);
+
+    printArray(numbers1);
   }
 }
