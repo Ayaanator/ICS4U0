@@ -1,4 +1,18 @@
 public class Recursion {
+  public static final int SIZE = 3;
+  public static void findPath(int row, int col, String path) {
+    if(row == SIZE - 1 && col == SIZE - 1) {
+      System.out.println(path);
+    } else {
+      if(col < SIZE - 1) {
+        findPath(row, col + 1, path + "RIGHT:");
+      }
+      if(row < SIZE - 1) {
+        findPath(row + 1, col, path + "DOWN:");
+      }
+    }
+  }
+
   public static long factorial(int n) {
     if (n == 0) {
       return 1;
@@ -44,6 +58,6 @@ public class Recursion {
   }
 
   public static void main(String[] args) {
-    pascalTriangle(5);
+    findPath(0, 0, "");
   }
 }
