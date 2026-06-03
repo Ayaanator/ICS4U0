@@ -27,6 +27,24 @@ import javax.swing.*;
       }
     }
 
+    do {
+      System.out.println("Waiting...");
+      String request = NetIO.receiveRequest();
+      NodeInfo commandFromServer = new NodeInfo(request);
+
+      switch (commandFromServer.getCommand()) {
+        case Globals.COMMAND_TO_WAIT:
+          System.out.println(commandFromServer.getMessage());
+          break;
+        case Globals.COMMAND_TO_START_GAME:
+          Globals.me = commandFromServer.getRowCol().charAt(0);
+          Globals.currentPlayer = Globals.PLAYER_ONE;
+          System.out.println(commandFromServer.getMessage());
+          break;
+      }
+
+    } while (!Globals.gameOver);
+
     Container container = mainWindow.getContentPane();
     container.add(tttPanel);
 
@@ -37,9 +55,9 @@ import javax.swing.*;
   }
   
   public static void main(String[] args) {
-    Globals.gameOver = false;
-    Globals.me = Globals.PLAYER_ONE;
-    Globals.currentPlayer = Globals.PLAYER_ONE;
+    //Globals.gameOver = false;
+    //Globals.me = Globals.PLAYER_ONE;
+    //Globals.currentPlayer = Globals.PLAYER_ONE;
     
     System.out.println("Game over : " + Globals.gameOver);
     System.out.println("I am player : " + Globals.me);

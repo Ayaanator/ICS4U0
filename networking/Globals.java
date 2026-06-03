@@ -25,8 +25,13 @@ public class Globals {
   public static final char COMMAND_DISPLAY_MESSAGE = 238; //server to client
   public static final char REQUEST_TO_DISCONNECT = COMMAND_GAME_TERMINATE; //client to server
   
+  public static final int MINIMUM_MESSAGE_LENGTH = 18;
   public static final int CLIENT_ID_LENGTH = 15;
   public static final String NO_MESSAGE = "No message"; 
+
+  public static final String DEFAULT_ROW_COL = "00";
+  public static final String UNKNOWN_PLAYER_NAME = "$$$$$$999999999";
+  public static final String UNKNOWN_ADDRESS = "000.000.000.000";
 
   // Graphics constants
   public static final int ROW_HEIGHT = 175;
