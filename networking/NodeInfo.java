@@ -27,6 +27,12 @@ public class NodeInfo {
   String getIPAddress() {return ipAddress;}
   String getMessage() {return message;}
 
+  void setCommand(char c) {command = c;}
+  void setRowCol(String rc) {rowCol = rc;}
+  void setUserName(String un) {userName = un;}
+  void setIPAddress(String i) {ipAddress = i;}
+  void setMessage(String m) {message = m;}
+
   public String toString() {
     return "Command\t\t\t: " + (int)command +
     "\nRowCol\t\t\t: " + rowCol + 
@@ -36,7 +42,12 @@ public class NodeInfo {
   }
 
   public static void main(String[] args) {
-    NodeInfo info = new NodeInfo((char) 245 + "12" + "000000123456789" + "00010.178.3.100" + "Your opponent is Dan...wait your turn.");
+    NodeInfo info = new NodeInfo();
+    info.setCommand((char) 243);
+    info.setRowCol("02");
+    info.setUserName("000000ABCDEFGHI");
+    info.setIPAddress("00192.168.0.129");
+    info.setMessage("It's your turn...");
     System.out.println(info);
   }
 }

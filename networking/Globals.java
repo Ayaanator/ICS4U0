@@ -40,4 +40,8 @@ public class Globals {
   public static boolean gameOver = false;
   public static int currentPlayer = NO_PLAYER;
   public static int me = NO_PLAYER;
+
+  public static final int ROWS = 3;
+  public static final int COLS = 3;
+  public static GridPanel[][] grid = new GridPanel[ROWS][COLS];
 }
