@@ -1,4 +1,5 @@
 import java.awt.Container;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import javax.swing.*;
 
@@ -31,16 +32,36 @@ import javax.swing.*;
       System.out.println("Waiting...");
       String request = NetIO.receiveRequest();
       NodeInfo commandFromServer = new NodeInfo(request);
+      String message = commandFromServer.getMessage();
 
       switch (commandFromServer.getCommand()) {
         case Globals.COMMAND_TO_WAIT:
-          System.out.println(commandFromServer.getMessage());
+          System.out.println(message);
           break;
         case Globals.COMMAND_TO_START_GAME:
-          Globals.me = commandFromServer.getRowCol().charAt(0);
+          Globals.me = commandFromServer.getRowCol().charAt(0) - '0';
           Globals.currentPlayer = Globals.PLAYER_ONE;
-          System.out.println(commandFromServer.getMessage());
+          System.out.println(message);
           break;
+        case Globals.COMMAND_YOUR_TURN:
+          int row = commandFromServer.getRowCol().charAt(0) - '0';
+          int col = commandFromServer.getRowCol().charAt(1) - '0';
+          Globals.grid[row][col].setVal(Globals.currentPlayer);
+
+          Graphics2D g = (Graphics2D) Globals.grid[row][col].getGraphics();
+          Globals.grid[row][col].drawXorO(g);
+
+          Globals.currentPlayer = Globals.currentPlayer == 1 ? 2 : 1;
+          System.out.println(message);
+          break;
+        case Globals.COMMAND_GAME_TERMINATE:
+          System.out.println(message);
+          Globals.gameOver = true;
+          break;
+        default:
+          System.out.println("*** fatal error: server command unknown");
+          break;
+        
       }
 
     } while (!Globals.gameOver);
