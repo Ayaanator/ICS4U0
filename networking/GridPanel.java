@@ -56,8 +56,6 @@ public class GridPanel extends JPanel {
       Globals.NO_MESSAGE,
       Globals.serverIPAddress);*/
 
-
-
       if(!Globals.gameOver && Globals.currentPlayer != Globals.NO_PLAYER 
         && Globals.currentPlayer == Globals.me && val == Globals.NO_PLAYER
       ) {
@@ -69,6 +67,22 @@ public class GridPanel extends JPanel {
           Globals.currentPlayer = 2;
         } else {
           Globals.currentPlayer = 1;
+        }
+
+        String request = "" + Globals.REQUEST_TO_PROCESS_PLAY + row + col +
+        Utils.leftPad(NetIO.myUserName(), Globals.CLIENT_ID_LENGTH, '0') +
+        Utils.leftPad(NetIO.myIPAddress(), Globals.MAX_IP_ADDRESS_LENGTH, '0') +
+        Globals.NO_MESSAGE;
+
+        int errorCode = NetIO.sendRequest(request, Globals.serverIPAddress);
+
+        if(errorCode == Globals.NET_OK) {
+          val = Globals.currentPlayer;
+          Globals.currentPlayer = Globals.currentPlayer == 1 ? 2 : 1;
+          drawXorO(g);
+          Utils.updateStatusLine("Please wait: It's your opponent's turn now ...");
+        } else {
+          Utils.updateStatusLine("Play not processed. Connection may be lost");
         }
       }
     }

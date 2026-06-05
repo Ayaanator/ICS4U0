@@ -33,6 +33,10 @@ public class Utils {
     return errorCode == Globals.NET_OK ? Globals.serverIPAddress : null;
   }
 
+  public static void updateStatusLine(String message) {
+    System.out.println(message);
+  }
+
   public static void main(String[] args) {
     if (Utils.initialNetworkConnection() != null) {
       System.out.println("Connection successful");
