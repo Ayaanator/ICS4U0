@@ -30,6 +30,12 @@ import javax.swing.*;
         }
       }
 
+      Container container = mainWindow.getContentPane();
+      container.add(tttPanel);
+      mainWindow.pack();
+      mainWindow.setLocationRelativeTo(null);
+      mainWindow.setVisible(true);
+
       do {
         System.out.println("Waiting...");
         String request = NetIO.receiveRequest();
@@ -53,9 +59,10 @@ import javax.swing.*;
             Graphics2D g = (Graphics2D) Globals.grid[row][col].getGraphics();
             Globals.grid[row][col].drawXorO(g);
 
-            Globals.currentPlayer = Globals.currentPlayer == 1 ? 2 : 1;
+            Globals.currentPlayer = Utils.otherPlayer(Globals.currentPlayer);
             Utils.updateStatusLine(message);
             break;
+          case Globals.COMMAND_GAME_OVER:
           case Globals.COMMAND_GAME_TERMINATE:
             Utils.updateStatusLine(message);
             Globals.gameOver = true;
@@ -71,13 +78,6 @@ import javax.swing.*;
 
       } while (!Globals.gameOver);
 
-      Container container = mainWindow.getContentPane();
-      container.add(tttPanel);
-
-      //mainWindow.getContentPane().add(tttPanel);
-      mainWindow.pack();
-      mainWindow.setLocationRelativeTo(null);
-      mainWindow.setVisible(true);
     } else {
       System.out.println("error: unable to connect. program ended");
     }

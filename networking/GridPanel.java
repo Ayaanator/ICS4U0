@@ -59,9 +59,7 @@ public class GridPanel extends JPanel {
       if(!Globals.gameOver && Globals.currentPlayer != Globals.NO_PLAYER 
         && Globals.currentPlayer == Globals.me && val == Globals.NO_PLAYER
       ) {
-        val = Globals.currentPlayer;
         Graphics2D g = (Graphics2D) getGraphics();
-        drawXorO(g);
         
         if(val == 1) {
           Globals.currentPlayer = 2;
@@ -78,8 +76,8 @@ public class GridPanel extends JPanel {
 
         if(errorCode == Globals.NET_OK) {
           val = Globals.currentPlayer;
-          Globals.currentPlayer = Globals.currentPlayer == 1 ? 2 : 1;
           drawXorO(g);
+          Globals.currentPlayer = Utils.otherPlayer(Globals.currentPlayer);
           Utils.updateStatusLine("Please wait: It's your opponent's turn now ...");
         } else {
           Utils.updateStatusLine("Play not processed. Connection may be lost");
