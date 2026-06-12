@@ -11,7 +11,7 @@ public class Globals {
   public static final int FRAME_X = 275;
   public static final int FRAME_Y = 275;
 
-  public static String serverIPAddress = "192.168.0.58";
+  public static String serverIPAddress = "192.168.0.190";
 
   // Commands to send to server
   public static final char REQUEST_UNKNOWN = 255;

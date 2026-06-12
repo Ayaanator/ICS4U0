@@ -31,6 +31,32 @@ public class SLink {
     }
   }
 
+  public SNode findNode(String name) {
+    SNode p = head;
+    for(; p != null && !name.equals(p.getName()); p = p.getNext());
+    return p;
+  }
+
+  public void deleteNode(SNode p) {
+    if(head != null && p != null) {
+      if(head == tail) {
+        head = null;
+        tail = null;
+      } else if(p == head) {
+        head = p.getNext();
+      } else {
+        SNode q = null;
+        for(q = head; q.getNext() != p; q = q.getNext());
+
+        if(p == tail) {
+          tail = q;
+        }
+        
+        q.setNext(p.getNext());
+      }
+    }
+  }
+
   public String toString() {
     String res = "";
 
